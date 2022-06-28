@@ -12,6 +12,7 @@ import reset from "styled-reset";
 import { normalize } from 'styled-normalize'
 
 import { createGlobalStyle } from "styled-components";
+import Available from "./pages/Available";
 
 const GlobalStyle = createGlobalStyle`
    ${reset}
@@ -25,6 +26,7 @@ const App = () => (
       <FetchUser>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/available" element={<Available />} />
           <Route path="/hooks" element={<Hooks />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
