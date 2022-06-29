@@ -12,6 +12,21 @@ class Property < ApplicationRecord
       WHERE p.sold <> TRUE;")
   end
 
+  def self.cities
+    cities = Address.find_by_sql("SELECT DISTINCT city 
+      FROM addresses")
+    cities.map do |c|
+      c.city
+    end
+  end
+
+  def self.by_city(city)
+    Property.find_by_sql(["SELECT p.id, price, beds, baths, sq_ft, city
+      FROM properties AS p
+      INNER JOIN addresses AS a ON a.property_id = p.id
+      WHERE SOLD <> true AND LOWER(a.city) = ?", city])
+  end
+
   # instance method called on instance
   def available
     # self here refers to the insance of class
