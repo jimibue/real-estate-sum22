@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Agent from "./Agent";
 
 const Available = () => {
   let [agentProperties, setAgentProperties] = useState([]);
@@ -10,8 +11,7 @@ const Available = () => {
   const normalizeData = (rawData) => {
     const agentsIds = rawData.map((rd) => rd.agent_id);
     const uniqueIds = [...new Set(agentsIds)];
-    console.log(uniqueIds);
-    let x = uniqueIds.map((id) => {
+    return uniqueIds.map((id) => {
       let properties = rawData.filter((p) => p.agent_id == id);
       let cleanedProperties = properties.map((p) => {
         return {
@@ -22,7 +22,8 @@ const Available = () => {
           price: p.price,
           state: p.state,
           street: p.street,
-          zip: p.zip
+          zip: p.zip,
+          city: p.city
         };
       });
       return {
@@ -31,24 +32,29 @@ const Available = () => {
         properties: cleanedProperties,
       };
     });
-
-    console.log(x);
   };
 
   const getAgentProperties = async () => {
     try {
       let res = await axios.get("/api/properties");
-      // need to normailize
-      normalizeData(res.data);
-      setAgentProperties(res.data);
+      let normalizedData = normalizeData(res.data);
+      setAgentProperties(normalizedData);
     } catch (err) {
       alert("err");
     }
   };
+
+  const renderAgentProperties = ()=>{
+    return agentProperties.map(a=>{
+      console.log(a)
+      return <Agent key={a.id} {...a}/>
+    })
+  }
+
   return (
     <div>
       <h1>Available</h1>
-      <p>{JSON.stringify(agentProperties)}</p>
+      {renderAgentProperties()}
     </div>
   );
 };
