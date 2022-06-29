@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   # root "articles#index"
   namespace :api do
      get '/properties', to:'properties#index'
+     get '/cities', to:'properties#cities'
   end
 end

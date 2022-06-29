@@ -5,4 +5,8 @@ class Api::PropertiesController < ApplicationController
       # calling available on the class
       render json: Property.available
     end
+
+    def cities
+      render json: Property.cities
+    end
 end
