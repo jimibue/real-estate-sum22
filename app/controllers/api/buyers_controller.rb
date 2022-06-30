@@ -1,10 +1,12 @@
 class Api::BuyersController < ApplicationController
 
     def index
-      render json: 'buyers index'
+      agent = Agent.find(params[:id])  
+      render json: agent.buyers
     end
 
     def show
-        render json: 'buyers show'
+        buyer = Buyer.find(params[:id])
+        render json: Buyer.my_homes(buyer.id, buyer.cities)
     end
 end
