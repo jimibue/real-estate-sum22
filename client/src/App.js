@@ -13,6 +13,7 @@ import reset from "styled-reset";
 import { createGlobalStyle } from "styled-components";
 import Available from "./pages/available/Available";
 import { Container } from "semantic-ui-react";
+import Cities from "./pages/cities/Cities";
 
 const GlobalStyle = createGlobalStyle`
    ${reset}
@@ -28,6 +29,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/available" element={<Available />} />
+            <Route path="/cities" element={<Cities />} />
             <Route path="/hooks" element={<Hooks />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
