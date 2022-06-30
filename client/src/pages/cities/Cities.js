@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Select } from "semantic-ui-react";
+import { Card, Select } from "semantic-ui-react";
+import PropertyCard from "../../components/shared/PropertyCard";
 import { useAxiosOnMount } from "../../hooks";
 
 const Cities = () => {
@@ -34,22 +35,15 @@ const Cities = () => {
     if (!properties) {
       return <p>no properties</p>;
     }
-    console.log(properties)
-    return properties.map((p) => {
-      return (
-        <div>
-          <p>yo</p>
-          <p>{JSON.stringify(p)}</p>
-        </div>
-      );
-    });
+    return properties.map((p) => <PropertyCard key={p.id} {...p} />) 
   };
   return (
     <>
       <h1>Cities Page</h1>
       {renderSelect()}
-      {renderProperties()}
-      <p>properties: {JSON.stringify(properties)}</p>
+      <Card.Group style={{marginTop:'20px'}}>
+        {renderProperties()}
+      </Card.Group>
     </>
   );
 };

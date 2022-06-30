@@ -1,34 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Card, Header, Icon, Image, Select } from "semantic-ui-react";
-
-// SAVE FOR NOW MIGHT NEED FOR TESTING.
-// const dummyAgents = [
-//   {
-//     id: 1,
-//     first_name: "Bob",
-//     last_name: "Dole",
-//     email: "test@test.com",
-//     unsold_homes: 4,
-//   },
-//   {
-//     id: 2,
-//     first_name: "Sally",
-//     last_name: "Dole",
-//     email: "salltst@test.com",
-//     unsold_homes: 2,
-//   },
-// ];
-
-// const dummyBuyers = [
-//   { id: 1, first_name: "buyer", last_name: " 1" },
-//   { id: 2, first_name: "buyer", last_name: "2" },
-// ];
-
-// const dummyProperties = [
-//   { id: 1, price: 1234123, sq_ft: 1234, city: "slc", beds:3, bath:2 },
-//   { id: 2, price: 234123, sq_ft: 234, city: "slc", beds:2, bath:1 },
-// ];
+import PropertyCard from "../../components/shared/PropertyCard";
 
 const Buyers = () => {
   const [agents, setAgents] = useState(null);
@@ -86,34 +59,7 @@ const Buyers = () => {
   };
 
   const renderProperties = () => {
-    return properties.map((p) => {
-      return (
-        <Card>
-          <Image
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkMh8S2bR8jyYfK3dIKD3PZ0mjxXJlk5Gzeg&usqp=CAU"
-            wrapped
-            ui={false}
-          />
-          <Card.Content>
-            <Card.Header>{p.price}</Card.Header>
-          </Card.Content>
-          <Card.Content extra>
-            <a>
-              <Icon name="expand arrows alternate" />
-              {p.sq_ft}
-            </a>
-            <a>
-              <Icon name="bath" />
-              {p.baths}
-            </a>
-            <a>
-              <Icon name="bed" />
-              {p.beds}
-            </a>
-          </Card.Content>
-        </Card>
-      );
-    });
+    return properties.map((p) => <PropertyCard key={p.id} {...p}/>);
   };
   return (
     <div style={{marginTop:'10px'}}>

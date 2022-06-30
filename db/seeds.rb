@@ -38,7 +38,7 @@ cities = [
       )
     end
     
-    5.times do
+    20.times do
       sold = rand(3) === 2
       price = rand(99000..1500000)
       percent_change = (-3..3).to_a.sample.to_f / 100
