@@ -21,7 +21,7 @@ class Property < ApplicationRecord
   end
 
   def self.by_city(city)
-    Property.find_by_sql(["SELECT p.id, price, beds, baths, sq_ft, city
+    Property.find_by_sql(["SELECT p.id, price, beds, baths, sq_ft, city, image
       FROM properties AS p
       INNER JOIN addresses AS a ON a.property_id = p.id
       WHERE SOLD <> true AND LOWER(a.city) = ?", city.downcase])

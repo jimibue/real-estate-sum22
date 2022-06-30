@@ -1,10 +1,10 @@
 import { Card, Icon, Image } from "semantic-ui-react"
 
-const PropertyCard = ({id, price, beds, sq_ft, baths})=>{
+const PropertyCard = ({id, price, beds, sq_ft, baths, image})=>{
     return (
         <Card>
         <Image
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkMh8S2bR8jyYfK3dIKD3PZ0mjxXJlk5Gzeg&usqp=CAU"
+          src={image}
           wrapped
           ui={false}
         />

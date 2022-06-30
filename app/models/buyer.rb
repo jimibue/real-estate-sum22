@@ -3,7 +3,7 @@ class Buyer < ApplicationRecord
   serialize :cities, Array
 
   def self.my_homes(id, cities)
-    Buyer.find_by_sql(["SELECT p.baths, p.beds, p.sq_ft, p.price, a.city, p.id 
+    Buyer.find_by_sql(["SELECT p.baths, p.beds, p.sq_ft, p.price, a.city, p.id, p.image 
       FROM buyers AS b
       INNER JOIN agents AS ag ON ag.id = b.agent_id 
       INNER JOIN properties AS p ON p.agent_id = ag.id AND p.price < b.max_price

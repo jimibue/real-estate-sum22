@@ -6,6 +6,11 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+images = [
+  'https://cdn.tollbrothers.com/communities/13198/images-resized/Pomona-Executive_Fariholm-Mediterranean_32_Front-Elevation-2_920.jpg',
+  'https://cdn.abcotvs.com/dip/images/5245665_bighousepool.jpg?w=800&r=16%3A9',
+  'https://charlotte.axios.com/wp-content/uploads/2022/01/02-DSC_7791_2_3_4_5.jpg.webp'
+]
 cities = [
     'Sandy',
     'Draper',
@@ -45,6 +50,7 @@ cities = [
       sold_price = sold ? price * (1 + percent_change) : nil
       p = Property.create(
         price: price,
+        image: images.sample,
         sold: sold,
         sold_price: sold_price,
         beds: rand(1..8),
