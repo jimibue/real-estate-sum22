@@ -68,7 +68,6 @@ const Buyers = () => {
       let res = await axios.get(`/api/buyers/${value}`);
       setProperties(res.data);
     } catch (err) {
-      setProperties(dummyProperties);
       alert('err occured')
     }
   };
