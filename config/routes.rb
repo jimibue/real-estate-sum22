@@ -11,5 +11,6 @@ Rails.application.routes.draw do
      get '/agents', to: 'agents#index'
      get '/agents/:id/buyers', to: 'buyers#index'
      get '/buyers/:id', to: 'buyers#show'
+     get '/city_cost', to:'properties#city_cost'
   end
 end

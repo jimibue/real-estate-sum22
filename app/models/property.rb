@@ -27,6 +27,16 @@ class Property < ApplicationRecord
       WHERE SOLD <> true AND LOWER(a.city) = ?", city.downcase])
   end
 
+  def self.cost_by_city
+     Property.find_by_sql("
+      SELECT DISTINCT a.city, SUM(sold_price) as total, STRING_AGG( CAST(p.sold_price AS VARCHAR),', ') AS prices, COUNT(*) price 
+      FROM properties as p
+      INNER JOIN addresses as a ON p.id = a.property_id
+      WHERE p.sold IS true
+      GROUP BY a.city;
+      ")
+  end
+
   # instance method called on instance
   def available
     # self here refers to the insance of class
