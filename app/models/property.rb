@@ -12,6 +12,15 @@ class Property < ApplicationRecord
       WHERE p.sold <> TRUE;")
   end
 
+  # def self.available
+  #   select('p.id AS property_id, p.beds, p.baths, p.sq_ft, p.price, p.sold, a.email, a.id AS agent_id, a.first_name, a.last_name, ad.city')
+  #   .from('properties AS p')
+  #   .joins("INNER JOIN agents AS a ON a.id = p.agent_id
+  #           INNER JOIN addresses AS ad ON ad.property_id = p.id")
+  #   .where('p.sold <> TRUE') 
+  #   .order('a.id')       
+  # end
+
   def self.cities
     cities = Address.find_by_sql("SELECT DISTINCT city 
       FROM addresses")
@@ -26,6 +35,13 @@ class Property < ApplicationRecord
       INNER JOIN addresses AS a ON a.property_id = p.id
       WHERE SOLD <> true AND LOWER(a.city) = ?", city.downcase])
   end
+
+  # def self.by_city(city)
+  #   select("p.id, p.beds, p.baths, p.sq_ft, p.price, a.city, a.street, p.sold")
+  #   .from('properties AS p')
+  #   .joins('INNER JOIN addresses a ON a.property_id = p.id')
+  #   .where("LOWER(a.city) = ? AND p.sold <> TRUE", city.downcase)
+  # end
 
   def self.cost_by_city
      Property.find_by_sql("
