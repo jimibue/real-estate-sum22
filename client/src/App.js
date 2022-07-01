@@ -15,6 +15,7 @@ import Available from "./pages/available/Available";
 import { Container } from "semantic-ui-react";
 import Cities from "./pages/cities/Cities";
 import Buyers from "./pages/buyers/Buyers";
+import CityCost from "./pages/cities/CityCost";
 
 const GlobalStyle = createGlobalStyle`
    ${reset}
@@ -32,6 +33,7 @@ const App = () => (
             <Route path="/available" element={<Available />} />
             <Route path="/cities" element={<Cities />} />
             <Route path="/buyers" element={<Buyers />} />
+            <Route path="/city_cost" element={<CityCost />} />
             <Route path="/hooks" element={<Hooks />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
